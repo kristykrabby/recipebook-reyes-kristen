@@ -1,18 +1,9 @@
-<html lang=""en">
-<head>
-    <title>Recipes</title>
-</head>
-<body>
-    {% block content %}
-    <h1>{{ name }}</h1>
-
-    <ul>
-    {% for ingredient in ingredients %}
-        <li>{{ ingredient.name }}: {{ ingredient.quantity }}</li>
-    {% endfor %}
-    </ul>
-
-    <p><a href="/ledger{{ link }}">Recipe Link</a></p>
-    {% endblock %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ name }} Ingredients</h2>
+<ul>
+{% for ingredient in ingredients %}
+    <li>{{ ingredient.name }}: {{ ingredient.quantity }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
