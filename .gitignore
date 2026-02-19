@@ -1,2 +1,8 @@
 recipebook/.env
 recipebook/db.sqlite3
+recipebook/env/
+recipebook/.venv/
+recipebook/venv/
+recipebook/**/*.pyc
+recipebook/__pycache__/
+recipebook/**/*.log
