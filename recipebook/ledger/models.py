@@ -9,20 +9,41 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f"{self.name}"
-    
+
     def get_absolute_url(self):
         return reverse('ledger:ingredient_detail', args=[str(self.id)])
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+    name = models.CharField(max_length=50)
+    bio = models.CharField(
+        validators=[MinLengthValidator(256)]
+        )
+
+    def __str__(self):
+        return f"{self.name}"
+
+
 class Recipe(models.Model):
     name = models.CharField(max_length=100)
+    author = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+        related_name="recipes"
+    )
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.name}"
 
     def get_absolute_url(self):
         return reverse('ledger:recipe_detail', args=[str(self.id)])
-    
+
     class Meta:
         verbose_name = 'recipe'
         verbose_name_plural = 'recipes'
@@ -40,17 +61,3 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         related_name='ingredients'
     )
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-    )
-    name = models.CharField(max_length=50)
-    bio = models.CharField(
-        validators=[MinLengthValidator(256)]
-        )
-
-    def __str__(self):
-        return f"{self.name}"
