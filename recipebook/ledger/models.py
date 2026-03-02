@@ -21,7 +21,8 @@ class Profile(models.Model):
     )
     name = models.CharField(max_length=50)
     bio = models.CharField(
-        validators=[MinLengthValidator(256)]
+        validators=[MinLengthValidator(256)],
+        blank=True
         )
 
     def __str__(self):
