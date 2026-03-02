@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 
 
 class Ingredient(models.Model):
@@ -38,3 +40,17 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         related_name='ingredients'
     )
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+    name = models.CharField(max_length=50)
+    bio = models.CharField(
+        validators=[MinLengthValidator(256)]
+        )
+
+    def __str__(self):
+        return f"{self.name}"
