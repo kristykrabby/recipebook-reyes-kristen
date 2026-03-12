@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_heading %}
+Add a New Recipe!
+{% endblock %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Save Form">
+    </form>
+{% endblock %}

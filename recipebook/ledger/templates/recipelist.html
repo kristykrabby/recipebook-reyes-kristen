@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block page_heading %}
 Recipe List
 {% endblock %}
@@ -10,4 +10,5 @@ Recipe List
     <li><a href="{{ recipe.get_absolute_url }}">{{ recipe }}</a></li>
     {% endfor %}
 </ul>
+<a href="{% url 'ledger:recipe_add' %}"><p>Add Recipes</p></a>
 {% endblock %}
