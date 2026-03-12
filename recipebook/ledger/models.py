@@ -4,16 +4,6 @@ from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 
 
-class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.name}"
-
-    def get_absolute_url(self):
-        return reverse('ledger:ingredient_detail', args=[str(self.id)])
-
-
 class Profile(models.Model):
     user = models.OneToOneField(
         User,
@@ -27,6 +17,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name}"
+
+    def get_absolute_url(self):
+        return reverse('ledger:ingredient_detail', args=[str(self.id)])
 
 
 class Recipe(models.Model):
